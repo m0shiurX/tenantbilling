@@ -1,0 +1,376 @@
+@import 'tailwindcss';
+
+/* @plugin "@tailwindcss/typography"; */
+
+/* @plugin "@tailwindcss/forms" {
+    strategy: class;
+} */
+
+/* DaisyUI removed – custom primitives below preserve existing look */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --breakpoint-lg: 992px;
+
+    /* ===========================================
+       THEMEABLE COLOR SYSTEM
+       Standard semantic naming for easy theming
+       =========================================== */
+
+    /* Primary Brand Colors - Muted Emerald Theme (reduced saturation for eye comfort) */
+    --color-primary: #047857;
+    /* emerald-700 - main brand, buttons, links */
+    --color-primary-dark: #1a4a42;
+    /* muted teal - hover states, sidebar menu bg */
+    --color-primary-darker: #163d37;
+    /* muted dark teal - sidebar wrapper */
+    --color-sidebar: #0f2a26;
+    /* muted deepest - icon rail bg */
+    --color-primary-light: #d1fae5;
+    /* emerald-100 - light backgrounds */
+    --color-primary-lighter: #ecfdf5;
+    /* emerald-50 - subtle highlights */
+
+    /* Secondary Colors */
+    --color-secondary: #1f2937;
+    /* gray-800 - text, dark elements */
+    --color-secondary-light: #4b5563;
+    /* gray-600 - muted text */
+
+    /* Accent Color - For CTAs, highlights */
+    --color-accent: #f59e0b;
+    /* amber-500 - warm contrast */
+    --color-accent-dark: #d97706;
+    /* amber-600 - hover */
+    --color-accent-light: #fef3c7;
+    /* amber-100 - backgrounds */
+
+    /* Semantic Status Colors */
+    --color-success: #059669;
+    /* emerald-600 - positive actions */
+    --color-success-light: #d1fae5;
+    /* emerald-100 */
+    --color-danger: #dc2626;
+    /* red-600 - errors, delete */
+    --color-danger-light: #fee2e2;
+    /* red-100 */
+    --color-warning: #f59e0b;
+    /* amber-500 - caution */
+    --color-warning-dark: #d97706;
+    /* amber-600 - text on light bg */
+    --color-warning-light: #fef3c7;
+    /* amber-100 */
+    --color-info: #0891b2;
+    /* cyan-600 - information */
+    --color-info-light: #cffafe;
+    /* cyan-100 */
+
+    /* Neutral Surface Colors */
+    --color-surface: #f9fafb;
+    /* gray-50 - page backgrounds */
+    --color-surface-alt: #f3f4f6;
+    /* gray-100 - cards, sections */
+    --color-border: #e5e7eb;
+    /* gray-200 - borders */
+
+    /* Text Colors */
+    --color-text: #111827;
+    /* gray-900 - headings */
+    --color-text-muted: #6b7280;
+    /* gray-500 - secondary text */
+    --color-text-light: #9ca3af;
+    /* gray-400 - placeholders */
+
+    /* Legacy DaisyUI compatibility */
+    --color-neutral: #4a5b58;
+    --color-accent-content: #78350f;
+    --color-base-100: #ffffff;
+    --color-base-200: #f9fafb;
+    --color-base-300: #f3f4f6;
+    --color-base-content: #1f2937;
+}
+
+/* Override DaisyUI light theme with custom brand colors */
+:root {
+    /* Primary colors mapped to CSS variables for runtime theming */
+    --color-primary: #047857;
+    --color-primary-dark: #1a4a42;
+    /* muted teal - sidebar menu bg */
+    --color-primary-darker: #163d37;
+    /* muted dark teal - sidebar wrapper */
+    --color-sidebar: #0f2a26;
+    /* muted deepest - icon rail bg */
+    --color-primary-light: #d1fae5;
+    --color-primary-lighter: #ecfdf5;
+
+    --color-secondary: #1f2937;
+    --color-secondary-light: #4b5563;
+
+    --color-accent: #f59e0b;
+    --color-accent-dark: #d97706;
+    --color-accent-light: #fef3c7;
+    --color-accent-content: #78350f;
+
+    --color-success: #059669;
+    --color-success-light: #d1fae5;
+    --color-danger: #dc2626;
+    --color-danger-light: #fee2e2;
+    --color-warning: #f59e0b;
+    --color-warning-light: #fef3c7;
+    --color-info: #0891b2;
+    --color-info-light: #cffafe;
+    --color-error: #dc2626;
+
+    --color-surface: #f9fafb;
+    --color-surface-alt: #f3f4f6;
+    --color-border: #e5e7eb;
+
+    --color-text: #111827;
+    --color-text-muted: #6b7280;
+    --color-text-light: #9ca3af;
+
+    --color-neutral: #4a5b58;
+    --color-base-100: #ffffff;
+    --color-base-200: #f9fafb;
+    --color-base-300: #f3f4f6;
+    --color-base-content: #1f2937;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex h-10 min-h-10 items-center justify-center gap-2 rounded-md border border-transparent bg-surface px-3 py-2 text-sm font-semibold text-secondary shadow-sm transition-colors duration-150 focus:ring-2 focus:ring-primary/30 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .btn-primary {
+        @apply border-primary bg-primary text-white hover:border-primary-dark hover:bg-primary-dark;
+    }
+
+    .btn-secondary {
+        @apply border-secondary bg-secondary text-white hover:bg-secondary-light;
+    }
+
+    .btn-outline {
+        @apply border-border bg-transparent text-secondary hover:border-primary hover:bg-primary-light hover:text-primary;
+    }
+
+    .btn-ghost {
+        @apply border-transparent bg-transparent text-secondary hover:bg-gray-100;
+    }
+
+    .btn-sm {
+        @apply h-9 min-h-9 px-3 text-sm;
+    }
+
+    .btn-circle {
+        @apply aspect-square rounded-full px-0;
+    }
+
+    .dropdown {
+        @apply relative;
+    }
+
+    .dropdown-content {
+        @apply absolute mt-2 hidden;
+    }
+
+    .dropdown-end .dropdown-content {
+        @apply right-0 left-auto;
+    }
+
+    .dropdown.dropdown-open .dropdown-content,
+    .dropdown:focus-within .dropdown-content,
+    .dropdown:hover .dropdown-content {
+        @apply block;
+    }
+
+    .menu {
+        @apply flex flex-col gap-1;
+    }
+
+    .modal {
+        @apply fixed inset-0 z-[999] hidden items-center justify-center bg-black/50 p-4 backdrop-blur-sm;
+    }
+
+    .modal[open],
+    .modal.modal-open {
+        @apply flex;
+    }
+
+    .modal-box {
+        @apply relative w-full max-w-xl rounded-lg bg-white p-6 shadow-xl;
+    }
+
+    .modal-action {
+        @apply mt-6 flex justify-end gap-3;
+    }
+
+    .modal-backdrop {
+        @apply fixed inset-0 bg-transparent;
+    }
+
+    .input {
+        @apply w-full rounded-md border border-border bg-white px-3 py-2 text-sm text-secondary placeholder:text-text-light focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none disabled:bg-gray-100 disabled:text-text-light;
+    }
+
+    .input-sm {
+        @apply h-9 px-3 text-sm;
+    }
+
+    .input-md {
+        @apply h-11 px-3 text-base;
+    }
+
+    .input-accent {
+        @apply border-primary/60 focus:border-primary focus:ring-primary/40;
+    }
+}
+
+@utility menu-btn {
+    @apply flex size-12 items-center justify-center rounded-2xl bg-white/5 text-white/90 transition-colors duration-300 hover:bg-accent/50 hover:text-white;
+}
+
+@utility active-menu-btn {
+    @apply size-12 bg-accent/50 text-white shadow-sm;
+}
+
+@utility active-group {
+    @apply rounded-md bg-accent/10 dark:bg-accent;
+}
+
+@utility sub-menu {
+    @apply hidden space-y-1;
+}
+
+@utility menu-label {
+    @apply mt-1 text-center text-[10px] leading-tight font-medium text-white/70 uppercase;
+}
+
+@utility active-menu {
+    @apply flex;
+}
+
+@utility menu-link {
+    @apply focus-within:ring-3 focus-within:ring-accent/40 focus-within:outline-hidden hover:bg-accent/40 hover:text-accent hover:no-underline focus:bg-accent/40 focus:text-accent focus:ring-3 focus:ring-accent/40 focus:outline-hidden active:text-accent;
+}
+
+@utility active-link {
+    @apply bg-accent/30 text-white;
+}
+
+@utility menu-icon {
+    @apply flex w-full flex-col items-center justify-center gap-0.5 py-2;
+}
+
+@utility dash-ring {
+    @apply focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-slate-500 focus-within:outline-dashed hover:outline-2 hover:outline-offset-2 hover:outline-slate-500 hover:outline-dashed;
+}
+
+@utility dash-ring-sm {
+    @apply focus-within:outline-1 focus-within:outline-offset-1 focus-within:outline-slate-500 focus-within:outline-dashed hover:outline-1 hover:outline-offset-1 hover:outline-slate-500 hover:outline-dashed;
+}
+
+@utility btn-create {
+    @apply inline-flex h-11 min-h-10 w-fit items-center justify-start gap-x-2 rounded-md border-2 border-primary bg-primary-dark px-2 pr-5 pl-2 text-base text-white shadow-sm transition-colors duration-150 hover:border-primary hover:bg-primary hover:text-white focus:ring-2 focus:ring-primary/30 focus:outline-none;
+}
+
+@utility table {
+    & :where(th, td) {
+        @apply p-0;
+    }
+}
+
+@utility input-sm {
+    @apply h-7;
+}
+
+@utility inv-thead {
+    /* invoice table */
+    @apply top-0 flex items-center justify-center bg-gray-800 text-white;
+}
+
+@utility inv-tbody {
+    @apply flex items-center justify-center bg-gray-50;
+}
+
+@utility inv-tfoot-sum-type {
+    @apply col-span-2 flex h-8 items-center justify-end bg-gray-200 pr-3 font-bold;
+}
+
+@utility inv-tfoot-sum-amount {
+    @apply h-8 border-b-2 border-gray-600 font-bold;
+}
+
+@layer utilities {
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background: #edf2f7;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #454545;
+        border-radius: 0px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+/* Global */
+body {
+    font-family: 'Figtree', sans-serif;
+}
+
+a {
+    @apply hover:text-current hover:no-underline focus:no-underline;
+}
+
+input[type='radio']:checked + span {
+    @apply block;
+}
+
+.label-toggle {
+    @apply hidden;
+}
+
+a {
+    @apply hover:text-current hover:no-underline focus:no-underline;
+}
+
+input[type='radio']:checked + span {
+    @apply block;
+}
