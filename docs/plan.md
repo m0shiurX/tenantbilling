@@ -114,7 +114,7 @@ The sidebar uses a **3-rail icon system** matching the existing `SidebarIconRail
 ```
 📊 REPORTS
 ├── Overview
-│   └── Daily Summary          → /reports/overview (date-range snapshot: billing, collections, expenses)
+│   └── Monthly Summary          → /reports/overview (date-range snapshot: billing, collections, expenses)
 ├── Rent Reports
 │   ├── Monthly Collection     → /reports/collection (THE Excel replica — exportable)
 │   ├── Arrears / Overdue      → /reports/arrears (aging: current, 1mo, 2mo, 3+mo)
